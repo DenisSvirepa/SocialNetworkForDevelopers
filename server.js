@@ -8,6 +8,9 @@ connectDB();
 
 app.get('/', (req, res) => res.send('API Runnig'));
 
+//Define Routes
+app.use('/api/users', require('./routes/api/users'));
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Sever started on port ${PORT}`));
