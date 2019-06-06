@@ -32,10 +32,10 @@ const AddEducation = ({ addEducation, history }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Add An Education</h1>
+      <h1 className='large text-primary'>Add Your Education</h1>
       <p className='lead'>
-        <i className='fas fa-code-branch' /> Add any schoolr or tootcamp that
-        your have attended
+        <i className='fas fa-code-branch' /> Add any school or bootcamp that you
+        have attended
       </p>
       <small>* = required field</small>
       <form
@@ -90,15 +90,12 @@ const AddEducation = ({ addEducation, history }) => {
               name='current'
               checked={current}
               value={current}
-              onChange={e => {
-                setFormData({
-                  ...formData,
-                  current: !current
-                });
+              onChange={() => {
+                setFormData({ ...formData, current: !current });
                 toggleDisabled(!toDateDisabled);
               }}
             />{' '}
-            Current Job
+            Current School
           </p>
         </div>
         <div className='form-group'>
@@ -122,9 +119,9 @@ const AddEducation = ({ addEducation, history }) => {
           />
         </div>
         <input type='submit' className='btn btn-primary my-1' />
-        <a className='btn btn-light my-1' href='dashboard.html'>
+        <Link className='btn btn-light my-1' to='/dashboard'>
           Go Back
-        </a>
+        </Link>
       </form>
     </Fragment>
   );
@@ -137,4 +134,4 @@ AddEducation.propTypes = {
 export default connect(
   null,
   { addEducation }
-)(AddEducation);
+)(withRouter(AddEducation));
