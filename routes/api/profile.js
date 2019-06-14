@@ -333,15 +333,15 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
   }
 });
 
-//@route  GET api/profile/github/:username
-//@desc   Get user repos from Github
-//@access Public
+// @route    GET api/profile/github/:username
+// @desc     Get user repos from Github
+// @access   Public
 router.get('/github/:username', (req, res) => {
   try {
     const options = {
-      uri: `http://api.github.com/users/${
+      uri: `https://api.github.com/users/${
         req.params.username
-      }/repos?per_page=5&sort=created: asc&client_id=${config.get(
+      }/repos?per_page=5&sort=created:asc&client_id=${config.get(
         'githubClientId'
       )}&client_secret=${config.get('githubSecret')}`,
       method: 'GET',
@@ -352,12 +352,13 @@ router.get('/github/:username', (req, res) => {
       if (error) console.error(error);
 
       if (response.statusCode !== 200) {
-        return res.status(400).json({ msg: 'No Github profile found' });
+        return res.status(404).json({ msg: 'No Github profile found' });
       }
+
       res.json(JSON.parse(body));
     });
   } catch (err) {
-    console.log(err.message);
+    console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
