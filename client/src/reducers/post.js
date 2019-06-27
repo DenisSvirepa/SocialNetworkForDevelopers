@@ -1,4 +1,4 @@
-import { GET_POSTS, POST_ERROR } from '../actions/types.js';
+import { GET_POSTS, POST_ERROR } from '../actions/types';
 
 const initialState = {
   posts: [],
